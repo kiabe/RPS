@@ -65,7 +65,8 @@ console.log(playRound());
 function game() {
 // loops playRound 5 times
     for (i = 0; i < 5; i++) {
-        playRound();
+        console.log(playRound());
     }
 
 }
+console.log(game());
