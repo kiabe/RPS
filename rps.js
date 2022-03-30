@@ -28,6 +28,10 @@ let draw = "It is a tie! Go again!";
 // blank x variable to store result of playRound in
 let x;
 
+// initial scores for players
+let playerScore = 0;
+let computerScore = 0;
+
 // function to play one round of rps when playerSelection and computerSelection are passed into function
 function playRound() {
 
@@ -78,17 +82,14 @@ console.log(x == draw);
 function game() {
 // loops playRound 5 times
     for (i = 0; i < 5; i++) {
+        // logs result of playRound()
         console.log(playRound());
-
+        scoreKeeper();
     }
 
 }
 // tests if game() loops
 console.log(game());
-
-// initial scores for players
-let playerScore = 0;
-let computerScore = 0;
 
 // keeps track of score
 function scoreKeeper() {
