@@ -28,7 +28,7 @@ let draw = "It is a tie! Go again!";
 // blank x variable to store result of playRound in
 let x;
 
-// initial scores for players
+// initial scores for player and computer
 let playerScore = 0;
 let computerScore = 0;
 
@@ -86,7 +86,7 @@ function game() {
         console.log(playRound());
         scoreKeeper();
     }
-
+    console.log(scoreCheck());
 }
 // tests if game() loops
 console.log(game());
@@ -116,3 +116,13 @@ function scoreKeeper() {
     }
 }
 
+// checks who has higher score and declares a winner
+function scoreCheck() {
+    if (playerScore > computerScore) {
+        return "Game over! Player has won!";
+    } else if (playerScore < computerScore) {
+        return "Game over! Player has lost! Better luck next time!";
+    } else {
+        return "Game over! It is a draw!";
+    }
+}
