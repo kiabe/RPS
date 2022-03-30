@@ -20,12 +20,16 @@ console.log(computerPlay());
 // player choice is unknown until playRound called
 let playerSelection;
 
+// preset messages to display on win/lose/draw results
+let win = "You win the round!";
+let lose = "You lose the round!";
+let draw = "It is a tie! Go again!";
+
+// blank x variable to store result of playRound in
+let x;
+
 // function to play one round of rps when playerSelection and computerSelection are passed into function
 function playRound() {
-    // preset messages to display on win/lose/draw results
-    let win = "You win the round!";
-    let lose = "You lose the round!";
-    let draw = "It is a tie! Go again!";
 
     // prompt player to make choice
     let playerSelection = prompt("Choose one of the following: rock, paper, or scissors.").toLowerCase();
@@ -36,37 +40,78 @@ function playRound() {
     console.log(computerSelection);
 
     if (playerSelection == "rock" && computerSelection == "scissors") {
-        return win;
+        return x = win;
     } else if (playerSelection == "rock" && computerSelection == "paper") {
-        return lose;
+        return x = lose;
     } else if (playerSelection == "rock" && computerSelection == "rock") {
-        return draw;
+        return x = draw;
     } else if (playerSelection == "paper" && computerSelection == "rock") {
-        return win;
+        return x = win;
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
-        return lose;
+        return x = lose;
     } else if (playerSelection == "paper" && computerSelection == "paper") {
-        return draw;
+        return x = draw;
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        return win;
+        return x = win;
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
-        return lose;
+        return x = lose;
     } else if (playerSelection == "scissors" && computerSelection == "scissors") {
-        return draw;
+        return x = draw;
     } else {
-        return "Not a valid choice";
+        return x = "Not a valid choice";
     }
 }
 
 // test playRound function
 console.log(playRound());
 
+// checks what the result of playRound is and stores it in 'x'
+console.log(x);
+
+// checks if x is equal to win/lose/draw variables declared earlier
+// should have 1 true scenario and 2 false scenarios
+console.log(x == win);
+console.log(x == lose);
+console.log(x == draw);
+
 // function that repeats playRound 5 times
 function game() {
 // loops playRound 5 times
     for (i = 0; i < 5; i++) {
         console.log(playRound());
+
     }
 
 }
+// tests if game() loops
 console.log(game());
+
+// initial scores for players
+let playerScore = 0;
+let computerScore = 0;
+
+// keeps track of score
+function scoreKeeper() {
+    
+    switch(x) {
+        case win:
+            playerScore++;
+            console.log(playerScore);
+            console.log(computerScore);
+            break;
+        case lose:
+            computerScore++;
+            console.log(playerScore);
+            console.log(computerScore);
+            break;
+        case draw:
+            console.log(playerScore);
+            console.log(computerScore);
+            break;
+        default:
+            console.log('Not a valid round');
+            console.log(playerScore);
+            console.log(computerScore);
+    }
+}
+
