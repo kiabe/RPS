@@ -14,9 +14,6 @@ function randomNum() {
     return Math.floor(Math.random() * 3);
 }
 
-// test to check computerPlay is randomly generating each choice
-console.log(computerPlay());
-
 // player choice is unknown until playRound called
 let playerSelection;
 
@@ -25,9 +22,6 @@ let win = "You win the round!";
 let lose = "You lose the round!";
 let draw = "It is a tie! Go again!";
 
-// blank x variable to store result of playRound in
-let x;
-
 // initial scores for player and computer
 let playerScore = 0;
 let computerScore = 0;
@@ -35,49 +29,39 @@ let computerScore = 0;
 // function to play one round of rps when playerSelection and computerSelection are passed into function
 function playRound() {
 
-    // prompt player to make choice
-    // let playerSelection = prompt("Choose one of the following: rock, paper, or scissors.").toLowerCase();
-    // console.log(playerSelection);
+    // gets reference to div with class result in html file
+    const result = document.querySelector('.result')
+
+    // create div for message for win/lose/draw results
+    const message = document.querySelector('.message');
+    result.appendChild(message);
 
     // get computer choice for rps game and assign to computerSelection
     let computerSelection = computerPlay();
     console.log(computerSelection);
 
     if (playerSelection == "rock" && computerSelection == "scissors") {
-        return x = win;
+        message.textContent = `${win}`;
     } else if (playerSelection == "rock" && computerSelection == "paper") {
-        return x = lose;
+        message.textContent = `${lose}`;
     } else if (playerSelection == "rock" && computerSelection == "rock") {
-        return x = draw;
+        message.textContent = `${draw}`;
     } else if (playerSelection == "paper" && computerSelection == "rock") {
-        return x = win;
+        message.textContent = `${win}`;
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
-        return x = lose;
+        message.textContent = `${lose}`;
     } else if (playerSelection == "paper" && computerSelection == "paper") {
-        return x = draw;
+        message.textContent = `${draw}`;
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        return x = win;
+        message.textContent = `${win}`;
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
-        return x = lose;
+        message.textContent = `${lose}`;
     } else if (playerSelection == "scissors" && computerSelection == "scissors") {
-        return x = draw;
+        message.textContent = `${draw}`;
     } else {
-        return x = "Not a valid choice";
+        message.textContent = "You're something else if you got this message";
     }
 }
-
-// test playRound function
-// console.log(playRound());
-
-// checks what the result of playRound is and stores it in 'x'
-console.log(x);
-
-// checks if x is equal to win/lose/draw variables declared earlier
-// should have 1 true scenario and 2 false scenarios
-console.log(x == win);
-console.log(x == lose);
-console.log(x == draw);
-
 
 // keeps track of score
 function scoreKeeper() {
@@ -115,12 +99,6 @@ function scoreCheck() {
     }
 }
 
-// display text for scorekeeping
-const playerTally = document.querySelector('.playerScore');
-playerTally.textContent = 'Player Score = ';
-const computerTally = document.querySelector('.computerScore');
-computerTally.textContent = 'Computer Score = ';
-
 // selects all buttons and creates a nodelist of the matches and stores it in variable buttons
 const buttons = document.querySelectorAll('button');
 
@@ -134,5 +112,7 @@ buttons.forEach((button) => {
         console.log(playRound());
     });
 });
+
+
 
 
