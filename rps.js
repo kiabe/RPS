@@ -36,8 +36,8 @@ let computerScore = 0;
 function playRound() {
 
     // prompt player to make choice
-    let playerSelection = prompt("Choose one of the following: rock, paper, or scissors.").toLowerCase();
-    console.log(playerSelection);
+    // let playerSelection = prompt("Choose one of the following: rock, paper, or scissors.").toLowerCase();
+    // console.log(playerSelection);
 
     // get computer choice for rps game and assign to computerSelection
     let computerSelection = computerPlay();
@@ -67,7 +67,7 @@ function playRound() {
 }
 
 // test playRound function
-console.log(playRound());
+// console.log(playRound());
 
 // checks what the result of playRound is and stores it in 'x'
 console.log(x);
@@ -78,18 +78,6 @@ console.log(x == win);
 console.log(x == lose);
 console.log(x == draw);
 
-// function that repeats playRound 5 times
-function game() {
-// loops playRound 5 times
-    for (i = 0; i < 5; i++) {
-        // logs result of playRound()
-        console.log(playRound());
-        scoreKeeper();
-    }
-    console.log(scoreCheck());
-}
-// tests if game() loops
-console.log(game());
 
 // keeps track of score
 function scoreKeeper() {
@@ -126,3 +114,25 @@ function scoreCheck() {
         return "Game over! It is a draw!";
     }
 }
+
+// display text for scorekeeping
+const playerTally = document.querySelector('.playerScore');
+playerTally.textContent = 'Player Score = ';
+const computerTally = document.querySelector('.computerScore');
+computerTally.textContent = 'Computer Score = ';
+
+// selects all buttons and creates a nodelist of the matches and stores it in variable buttons
+const buttons = document.querySelectorAll('button');
+
+// iterates through each button and adds an event click listener to each one
+// clicking one of rock, paper, or scissors button will set playerSelection variable to the id associated with the pushed button
+// will also call playRound and display result in console
+buttons.forEach((button) => {
+    button.addEventListener('click', function() {
+        playerSelection = button.id;
+        console.log(playerSelection);
+        console.log(playRound());
+    });
+});
+
+
