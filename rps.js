@@ -26,15 +26,27 @@ let draw = "It is a tie! Go again!";
 let playerScore = 0;
 let computerScore = 0;
 
+// gets reference to div with class result in html file
+const result = document.querySelector('.result')
+
+// create div for message for win/lose/draw results
+const message = document.querySelector('.message');
+result.appendChild(message);
+
+// DOM methods for scorekeeping
+const player = document.createElement('div');
+player.classList.add('playerScore');
+player.textContent = `Player score is ${playerScore}`;
+result.appendChild(player);
+
+const computer = document.createElement('div');
+computer.classList.add('computerScore');
+computer.textContent = `Computer score is ${computerScore}`;
+result.appendChild(computer);
+
 // function to play one round of rps when playerSelection and computerSelection are passed into function
+// also keeps score and updates with each round
 function playRound() {
-
-    // gets reference to div with class result in html file
-    const result = document.querySelector('.result')
-
-    // create div for message for win/lose/draw results
-    const message = document.querySelector('.message');
-    result.appendChild(message);
 
     // get computer choice for rps game and assign to computerSelection
     let computerSelection = computerPlay();
@@ -42,51 +54,35 @@ function playRound() {
 
     if (playerSelection == "rock" && computerSelection == "scissors") {
         message.textContent = `${win}`;
+        playerScore++;
     } else if (playerSelection == "rock" && computerSelection == "paper") {
         message.textContent = `${lose}`;
+        computerScore++;
     } else if (playerSelection == "rock" && computerSelection == "rock") {
         message.textContent = `${draw}`;
     } else if (playerSelection == "paper" && computerSelection == "rock") {
         message.textContent = `${win}`;
+        playerScore++;
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
         message.textContent = `${lose}`;
+        computerScore++;
     } else if (playerSelection == "paper" && computerSelection == "paper") {
         message.textContent = `${draw}`;
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
         message.textContent = `${win}`;
+        playerScore++;
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
         message.textContent = `${lose}`;
+        computerScore++;
     } else if (playerSelection == "scissors" && computerSelection == "scissors") {
         message.textContent = `${draw}`;
     } else {
         message.textContent = "You're something else if you got this message";
     }
+    player.textContent = `Player score is ${playerScore}`;
+    computer.textContent = `Computer score is ${computerScore}`;
 }
 
-// keeps track of score
-function scoreKeeper() {
-    
-    switch(x) {
-        case win:
-            playerScore++;
-            console.log(playerScore);
-            console.log(computerScore);
-            break;
-        case lose:
-            computerScore++;
-            console.log(playerScore);
-            console.log(computerScore);
-            break;
-        case draw:
-            console.log(playerScore);
-            console.log(computerScore);
-            break;
-        default:
-            console.log('Not a valid round');
-            console.log(playerScore);
-            console.log(computerScore);
-    }
-}
 
 // checks who has higher score and declares a winner
 function scoreCheck() {
@@ -112,7 +108,5 @@ buttons.forEach((button) => {
         console.log(playRound());
     });
 });
-
-
 
 
