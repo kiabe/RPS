@@ -44,6 +44,11 @@ computer.classList.add('computerScore');
 computer.textContent = `Computer score is ${computerScore}`;
 result.appendChild(computer);
 
+// creates a variable 'end' for display message when either side gets 5 points first
+const end = document.createElement('div');
+end.classList.add('end');
+result.appendChild(end);
+
 // function to play one round of rps when playerSelection and computerSelection are passed into function
 // also keeps score and updates with each round
 function playRound() {
@@ -81,17 +86,25 @@ function playRound() {
     }
     player.textContent = `Player score is ${playerScore}`;
     computer.textContent = `Computer score is ${computerScore}`;
+    scoreCheck();
 }
 
 
 // checks who has higher score and declares a winner
 function scoreCheck() {
-    if (playerScore > computerScore) {
-        return "Game over! Player has won!";
-    } else if (playerScore < computerScore) {
-        return "Game over! Player has lost! Better luck next time!";
+
+    if (playerScore === 5) {
+        alert(end.textContent = `Player has reached ${playerScore} points. Player wins!`);
+        document.querySelector('#rock').disabled = true;
+        document.querySelector('#paper').disabled = true;
+        document.querySelector('#scissors').disabled = true;
+    } else if (computerScore === 5) {
+        alert(end.textContent = `Computer has reached ${computerScore} points. Computer wins!`);
+        document.querySelector('#rock').disabled = true;
+        document.querySelector('#paper').disabled = true;
+        document.querySelector('#scissors').disabled = true;
     } else {
-        return "Game over! It is a draw!";
+        end.textContent = 'Game ongoing';
     }
 }
 
@@ -105,7 +118,8 @@ buttons.forEach((button) => {
     button.addEventListener('click', function() {
         playerSelection = button.id;
         console.log(playerSelection);
-        console.log(playRound());
+        playRound();
+        console.log(message.textContent);
     });
 });
 
