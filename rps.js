@@ -26,6 +26,9 @@ let draw = "It is a tie! Go again!";
 let playerScore = 0;
 let computerScore = 0;
 
+// gets reference to container div tag in html file
+const container = document.querySelector('#container');
+
 // gets reference to div with class result in html file
 const result = document.querySelector('.result')
 
@@ -48,6 +51,12 @@ result.appendChild(computer);
 const end = document.createElement('div');
 end.classList.add('end');
 result.appendChild(end);
+
+// creates reset button
+const reset = document.createElement('button');
+reset.classList.add('reset');
+reset.textContent = 'Reset';
+container.appendChild(reset);
 
 // function to play one round of rps when playerSelection and computerSelection are passed into function
 // also keeps score and updates with each round
@@ -82,29 +91,42 @@ function playRound() {
     } else if (playerSelection == "scissors" && computerSelection == "scissors") {
         message.textContent = `${draw}`;
     } else {
-        message.textContent = "You're something else if you got this message";
+        message.textContent = "";
     }
     player.textContent = `Player score is ${playerScore}`;
     computer.textContent = `Computer score is ${computerScore}`;
     scoreCheck();
 }
 
-
 // checks who has higher score and declares a winner
 function scoreCheck() {
 
     if (playerScore === 5) {
-        alert(end.textContent = `Player has reached ${playerScore} points. Player wins!`);
+        end.textContent = `Player has reached ${playerScore} points. Player wins!`;
         document.querySelector('#rock').disabled = true;
         document.querySelector('#paper').disabled = true;
         document.querySelector('#scissors').disabled = true;
     } else if (computerScore === 5) {
-        alert(end.textContent = `Computer has reached ${computerScore} points. Computer wins!`);
+        end.textContent = `Computer has reached ${computerScore} points. Computer wins!`;
         document.querySelector('#rock').disabled = true;
         document.querySelector('#paper').disabled = true;
         document.querySelector('#scissors').disabled = true;
     } else {
         end.textContent = 'Game ongoing';
+    }
+}
+
+// at any point, player can choose reset scores. will also work at game end
+function resetGame() {
+    if (playerScore === 5 || computerScore === 5) {
+        end.textContent = "";
+        player.textContent = `Player score is ${playerScore * 0}`;
+        computer.textContent = `Computer score is ${computerScore * 0}`;
+        document.querySelector('#rock').disabled = false;
+        document.querySelector('#paper').disabled = false;
+        document.querySelector('#scissors').disabled = false;
+    } else {
+        return "I don't know how you got here, but return to the depths from whence you came.";
     }
 }
 
@@ -123,4 +145,4 @@ buttons.forEach((button) => {
     });
 });
 
-
+reset.addEventListener('click', resetGame);
