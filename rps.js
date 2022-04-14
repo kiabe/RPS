@@ -116,7 +116,7 @@ function scoreCheck() {
     }
 }
 
-// at any point, player can choose reset scores. will also work at game end
+// at game end, allow player to reset game
 function resetGame() {
     if (playerScore === 5 || computerScore === 5) {
         end.textContent = "";
@@ -145,4 +145,5 @@ buttons.forEach((button) => {
     });
 });
 
+// enables reset button to perform reset function
 reset.addEventListener('click', resetGame);
