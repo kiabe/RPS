@@ -1,0 +1,44 @@
+body {
+    background-color: #dcd6f7;
+}
+
+h1 {
+    text-align: center;
+    color: #3d52d5;
+}
+
+#container {
+flex: 1;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#rock, #paper, #scissors, .reset {
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    border-radius: 6px;
+    color: #fff;
+    height: 50px;
+    width: 70px;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.message, .playerScore, .computerScore, .end {
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.restartSpace {
+    display: flex;
+    justify-content: center;
+}
+

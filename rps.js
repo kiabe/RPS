@@ -54,9 +54,12 @@ result.appendChild(end);
 
 // creates reset button
 const reset = document.createElement('button');
+const restartSpace = document.createElement('div');
 reset.classList.add('reset');
+restartSpace.classList.add('restartSpace');
 reset.textContent = 'Reset';
-container.appendChild(reset);
+container.appendChild(restartSpace);
+restartSpace.appendChild(reset);
 
 // function to play one round of rps when playerSelection and computerSelection are passed into function
 // also keeps score and updates with each round
